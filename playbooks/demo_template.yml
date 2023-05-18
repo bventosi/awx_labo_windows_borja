@@ -1,0 +1,15 @@
+---
+- hosts: "{{ servidores }}"
+  tasks:
+  - name: crear un directorio temporal
+    win_file:
+      path: C:\Temp
+      state: directory
+  - name: copiamos el fichero que queramos que sea estático
+    win_copy:
+      src: /tools/git_repositories/ansible_bventosi/awx_labo_windows_borja/test.conf
+      dest: C:\Temp\test.conf
+  - name: copiamos el fichero de configuración dinámico
+    win_template:
+      src: /tools/git_repositories/ansible_bventosi/awx_labo_windows_borja/template_ejemplo.j2
+      dest: C:\Temp\test2.conf

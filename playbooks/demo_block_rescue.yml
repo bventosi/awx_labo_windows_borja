@@ -1,0 +1,16 @@
+---
+ - hosts: "{{ servidores }}"
+   gather_facts: false
+   tasks:
+     - name: Verificar conexión WEB a localhost
+       block:
+       win_uri:
+         url: "http://localhost"
+       rescue:
+        - name: Asumo que el servicio Apache2.2 esta parado, por lo tanto lo levanto
+          win_service:
+            name: Apache2.2
+            state: started
+     - name: Muestra el mensaje si ha ido bien o no
+       debug:
+         msg: "Ha funcionado!!"

@@ -1,0 +1,10 @@
+---
+- hosts: "{{ servidores }}"
+  serial:
+  - 1 
+  - 2
+  - 50%
+  tasks:
+    - name: Obtenemos archivos
+      win_uri:
+        url: "http://{{ inventory_hostname }}"
