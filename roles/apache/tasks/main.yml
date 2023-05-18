@@ -1,2 +1,10 @@
 ---
 # tasks file for apache
+ - name: creamos un directorio temporal
+   win_file:
+     path: C:\Temp3
+     state: directory
+ - name: copiamos el fichero de configuración dinámico
+   win_template:
+     src: /tools/git_repositories/ansible_bventosi/awx_labo_windows_borja/template_ejemplo.j2
+     dest: C:\Temp3\test2.conf
